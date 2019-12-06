@@ -13,13 +13,13 @@ def main():
     logf = open('cardlog.txt', 'w')
     try:
         ccfile = open("carddata.txt", 'r')
+        txns = ccfile.readlines()
     except IOError:
         logf.write('no txns this month\n')
         logf.close()
-        return
-
-    txns = ccfile.readlines()
-    ccfile.close()
+    finally:
+        ccfile.close()
+    
     total = 0.00
     logf.write('account log; \n')
 
